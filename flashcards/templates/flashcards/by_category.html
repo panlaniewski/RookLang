@@ -3,10 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Главная: Мои карточки</title>
+        <title>{{current_category.name}}: Мои карточки</title>
     </head>
     <body>
         <h1>Мои карточки</h1>
+        <h2>Тема: {{current_category.name}}</h2>
         <div>
             <a href="/flashcards/">Главная</a>
             {% for category in categories %}
