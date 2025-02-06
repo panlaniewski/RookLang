@@ -5,7 +5,7 @@ from .models import Flashcard, Category
 def index(request):
     flshcards = Flashcard.objects.all()
     categories = Category.objects.all()
-    return render(request, 'flashcards/index.html', { 'flshcards' : flshcards, 'categories': categories})
+    return render(request, 'flashcards/index.html', { 'flshcards' : flshcards, 'categories': categories} )
 
 def by_category(request, category_id):
     flshcards = Flashcard.objects.filter(category = category_id)
