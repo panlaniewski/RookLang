@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from .models import Flashcard, Category
-from .forms import FlashcardForm
+from .forms import FlashcardForm, CategoryForm
 
 def index(request):
     flashcards = Flashcard.objects.all()
@@ -21,8 +21,18 @@ def by_category(request, category_id):
     return render(request, 'flashcards/by_category.html', context)
 
 class FlashcardCreateView(CreateView):
-    template_name = 'flashcards/create.html'
+    template_name = 'flashcards/create_flashcard.html'
     form_class = FlashcardForm
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
+    
+class CategoryCreateView(CreateView):
+    template_name = 'flashcards/create_category.html'
+    form_class = CategoryForm
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):

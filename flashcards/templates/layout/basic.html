@@ -1,9 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Главная{% endblock %}: Мои карточки</title>
+        <link rel="stylesheet" href="{% static 'flashcards/style.css' %}">
     </head>
     <body>
         <header>
@@ -11,7 +14,8 @@
         </header>
         <nav>
             <a href="{% url 'index' %}">Главная</a>
-            <a href="{% url 'add' %}">Добавить</a>
+            <a href="{% url 'add_category' %}">Добавить тему</a>
+            <a href="{% url 'add_flashcard' %}">Добавить карточку</a>
             {% for category in categories %}
             <a href="{% url 'by_category' category.pk %}">{{category.name}}</a>
             {% endfor %}
