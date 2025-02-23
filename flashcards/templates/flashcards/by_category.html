@@ -3,7 +3,7 @@
 {% block title %}{{current_category.name}}{% endblock %}
 
 {% block content %}
-<h2>Тема: {{current_category.name}}</h2>
+<h2 class="kadwa-regular">Тема: {{current_category.name}}</h2>
 {% for flashcard in flashcards %}
 <div>
     <h2>{{flashcard.word}}</h2>
