@@ -1,0 +1,91 @@
+/*---------------------------------------IMPORTS-----------------------------------------------*/
+@import 'settings.css';
+/*---------------------------------------------------------------------------------------------*/
+/*----------------------------------------HEADER-----------------------------------------------*/
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+}
+.header__wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 30;
+    background-color: var(--blue);
+}
+.header__container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 128px;
+}
+.header__logo {
+    margin-right: 11%;
+}
+.header__logo a {
+    color: var(--white);
+    font-size: 2.5vw;
+}
+.header__search {
+    margin-right: 2.76%;
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    min-width: 49.375%;
+    background-color: #1C669E;
+    padding: 12px 21px;
+    border-radius: 65px;
+}
+.search-header__input::placeholder {
+    opacity: 35%;
+    color: var(--white);
+    font-size: 20px;
+}
+.search-header__input {
+    color: var(--white);
+    font-size: 20px;
+    background-color: transparent;
+}
+.header__languages {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    margin-right: 3.07%;
+}
+.languages-header__btn {
+    position: relative;
+    padding: 17px 7px;
+    font-size: 32px;
+    color: var(--white);
+    border-radius: 5px;
+}
+.languages-header__btn:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 36px;
+    right: -11px;
+    width: 3px;
+    height: 31px;
+    background-color: var(--white);
+}
+/* .languages-header__btn:hover{
+    color: var(--blue);
+    background-color: var(--white);
+} */
+.header__user {
+}
+.user-header__btn {
+    width: 90px;
+    height: 90px;
+    background-color: #D9D9D9;
+    border-radius: 100%;
+}
+.header__burger {
+}
+.burger-header {
+}
