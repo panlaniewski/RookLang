@@ -16,14 +16,16 @@
                         <a href="{% url 'index' %}" class="logo-header__link">RookLang</a>
                     </div>
                     <div class="header__search search-header">
-                        <img src="{% static 'flashcards/img/search.svg' %}" alt="Search icon">
-                        <input type="text" class="search-header__input" placeholder="поиск по карточкам...">
-                    </div>
-                    <div class="header__languages languages-header">
-                        <button class="languages-header__btn" type="button">ru</button>
-                        <button class="languages-header__btn" type="button">en</button>
+                        <div class="search-header__wrapper">
+                            <img src="{% static 'flashcards/img/search.svg' %}" alt="Search icon">
+                            <input type="text" class="search-header__input" placeholder="поиск по карточкам...">
+                        </div>
+                        <button class="search-header__btn" type="button">
+                            <img src="{% static 'flashcards/img/search.svg' %}" alt="Search icon">
+                        </button>
                     </div>
                     <div class="header__user user-header">
+                        <p class="user-header__name">User</p>
                         <button class="user-header__btn">
                             <img src="{% static 'flashcards/img/user.svg' %}" alt="User icon">
                         </button>
