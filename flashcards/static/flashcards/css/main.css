@@ -200,3 +200,49 @@
 }
 /*---------------------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------------------*/
+.footer {
+    background-color: var(--blue);
+}
+.footer__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.footer__text {
+    font-size: 15px;
+    color: var(--white);
+    padding: 15px 0;
+}
+/*---------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
+.page {
+    display: flex;
+    flex-wrap: wrap;
+}
+.page__nav {
+}
+.nav {
+}
+/* .nav__container {
+    max-width: 242px;
+    margin: 0 auto;
+    padding: 0 15px;
+} */
+.nav__title {
+}
+.nav__all {
+}
+.nav__list {
+}
+.nav-list {
+}
+.nav-list__title {
+}
+.nav-list__list {
+}
+.nav-list__item {
+}
+.nav-list__link {
+}
+

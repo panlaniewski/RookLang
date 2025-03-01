@@ -76,14 +76,13 @@ a {
     display: flex;
     flex-direction: column;
 }
-
-[class*="_container"] {
-    max-width: 1809px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
 .page {
     flex: 1 1 auto;
+}
+[class*="_container"] {
+    max-width: 1829px;
+    margin: 0 auto;
+    padding: 0 25px;
 }
 ._bg-img {
     position: relative;
@@ -99,16 +98,13 @@ a {
 [hidden] {
     display: none;
 }
-main {
-    padding-top: 128px;
-}
 input:focus::placeholder {
     font-size: 0;
 }
 @media (max-width: 767.98px) {
-    main {
+    /* main {
         padding-top: 95px;
-    }
+    } */
 }
 /*---------------------------------------------------------------------------------------------*/
 

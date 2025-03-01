@@ -1,51 +1,49 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Главная{% endblock %}: Мои карточки</title>
-        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}?v=124">
+        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}?v=125">
     </head>
     <body>
-        <header class="header">
-            <div class="header__wrapper">
-                <div class="header__container">
-                    <div class="header__logo logo-header">
-                        <a href="{% url 'index' %}" class="logo-header__link">RookLang</a>
-                    </div>
-                    <div class="header__search search-header">
-                        <div class="search-header__wrapper">
-                            <img src="{% static 'flashcards/img/search.svg' %}" alt="Search icon">
-                            <input type="text" class="search-header__input" placeholder="поиск по карточкам...">
+        <div class="wrapper">
+            <header class="header">
+                <div class="header__wrapper">
+                    <div class="header__container">
+                        <div class="header__logo logo-header">
+                            <a href="{% url 'index' %}" class="logo-header__link">RookLang</a>
                         </div>
-                        <button class="search-header__btn" type="button">
-                            <img src="{% static 'flashcards/img/search.svg' %}" alt="Search icon">
-                        </button>
+                        <div class="header__search search-header">
+                            <div class="search-header__wrapper">
+                                <img src="{% static 'flashcards/img/search.svg' %}" alt="Search icon">
+                                <input type="text" class="search-header__input" placeholder="поиск по карточкам...">
+                            </div>
+                            <button class="search-header__btn" type="button">
+                                <img src="{% static 'flashcards/img/search.svg' %}" alt="Search icon">
+                            </button>
+                        </div>
+                        <div class="header__user user-header">
+                            <p class="user-header__name">User</p>
+                            <button class="user-header__btn">
+                                <img src="{% static 'flashcards/img/user.svg' %}" alt="User icon">
+                            </button>
+                        </div>
+                        <!-- <button class="header__burger burger-header"><span></span></button> -->
                     </div>
-                    <div class="header__user user-header">
-                        <p class="user-header__name">User</p>
-                        <button class="user-header__btn">
-                            <img src="{% static 'flashcards/img/user.svg' %}" alt="User icon">
-                        </button>
-                    </div>
-                    <!-- <button class="header__burger burger-header"><span></span></button> -->
                 </div>
-            </div>
-        </header>
-        <nav>
-            <a href="{% url 'index' %}">Главная</a>
-            <a href="{% url 'add_category' %}">Добавить тему</a>
-            <a href="{% url 'add_flashcard' %}">Добавить карточку</a>
-            {% for category in categories %}
-            <a href="{% url 'by_category' category.pk %}">{{category.name}}</a>
-            {% endfor %}
-        </nav>
-        <main>
-            {% block content %}
-            {% endblock %}
-        </main>
+            </header>
+            <main class="page">
+                {% block content %}
+                {% endblock %}
+            </main>
+            <footer class="footer">
+                <div class="footer__container">
+                    <p class="footer__text">Roshcha, 2025. By panlaniewski</p>
+                </div>
+            </footer>
+        </div>
     </body>
     <script src="{% static 'flashcards/js/script.js' %}"></script>
 </html>

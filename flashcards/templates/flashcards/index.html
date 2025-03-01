@@ -1,6 +1,41 @@
 {% extends 'layout/basic.html' %}
+{% load static %}
 
 {% block content %}
+<div class="page__nav nav">
+    <div class="nav__container">
+        <h2 class="nav__title">
+            <img src="{% static 'flashcards/img/star.svg' %}" alt="Nav title icon">
+            Главная
+        </h2>
+        <h3 class="nav__all">
+            <img src="{% static 'flashcards/img/book.svg' %}" alt="Main page icon">
+            <a href="{% url 'index' %}">Все карточки</a>
+        </h3>
+        <nav class="nav__list nav-list">
+            <h4 class="nav-list__title">
+                <img src="{% static 'flashcards/img/records.svg' %}" alt="All flashcard icon">
+                Темы
+            </h4>
+            <ul class="nav-list__list">
+                {% for category in categories %}
+                    <li class="nav-list__item">
+                        <img src="{% static 'flashcards/img/chat.svg' %}" alt="Category icon">
+                        <a href="{% url 'by_category' category.pk %}" class="nav-list__link">
+                            {{category.name}}
+                        </a>
+                    </li>
+                {% endfor %} 
+            </ul>
+        </nav>
+    </div>
+    <!-- <a href="{% url 'index' %}">Главная</a>
+    <a href="{% url 'add_category' %}">Добавить тему</a>
+    <a href="{% url 'add_flashcard' %}">Добавить карточку</a>
+    {% for category in categories %}
+        <a href="{% url 'by_category' category.pk %}">{{category.name}}</a>
+    {% endfor %} -->
+</div>
 {% for flashcard in flashcards %}
     <div>
         <h2>{{flashcard.word}}</h2>
