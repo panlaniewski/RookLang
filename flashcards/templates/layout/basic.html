@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Главная{% endblock %}: Мои карточки</title>
-        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}?v=125">
+        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}?v=127">
     </head>
     <body>
         <div class="wrapper">
@@ -35,8 +35,41 @@
                 </div>
             </header>
             <main class="page">
-                {% block content %}
-                {% endblock %}
+                <div class="page__container">
+                    <div class="page__sidebar sidebar">
+                        <div class="sidebar__container">
+                            <h2 class="sidebar__title">
+                                <span>Главная</span>
+                            </h2>
+                            <h3 class="sidebar__all link_active">
+                                <a href="{% url 'index' %}">Все карточки</a>
+                            </h3>
+                            <nav class="sidebar__nav nav-sidebar">
+                                <h4 class="nav-sidebar__title">
+                                    <span>Темы</span>
+                                </h4>
+                                <ul class="nav-sidebar__list">
+                                    {% for category in categories %}
+                                        <li class="nav-sidebar__item">
+                                            <!-- <img src="{% static 'flashcards/img/chat.svg' %}" alt="Category icon"> -->
+                                            <a href="{% url 'by_category' category.pk %}" class="nav-list__link">
+                                                <span>{{category.name}}</span>
+                                            </a>
+                                        </li>
+                                    {% endfor %} 
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- <a href="{% url 'index' %}">Главная</a>
+                        <a href="{% url 'add_category' %}">Добавить тему</a>
+                        <a href="{% url 'add_flashcard' %}">Добавить карточку</a>
+                        {% for category in categories %}
+                            <a href="{% url 'by_category' category.pk %}">{{category.name}}</a>
+                        {% endfor %} -->
+                    </div>
+                    {% block content %}
+                    {% endblock %}
+                </div>
             </main>
             <footer class="footer">
                 <div class="footer__container">
