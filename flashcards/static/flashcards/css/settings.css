@@ -80,9 +80,9 @@ a {
     flex: 1 1 auto;
 }
 [class*="_container"] {
-    max-width: 1829px;
+    max-width: 1866px;
     margin: 0 auto;
-    padding: 0 25px;
+    padding: 0 15px;
 }
 ._bg-img {
     position: relative;

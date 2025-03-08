@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Главная{% endblock %}: Мои карточки</title>
-        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}?v=127">
+        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}?v=133">
     </head>
     <body>
         <div class="wrapper">
@@ -30,7 +30,7 @@
                                 <img src="{% static 'flashcards/img/user.svg' %}" alt="User icon">
                             </button>
                         </div>
-                        <!-- <button class="header__burger burger-header"><span></span></button> -->
+                        <button class="header__burger burger-header"><span></span></button>
                     </div>
                 </div>
             </header>
@@ -38,6 +38,12 @@
                 <div class="page__container">
                     <div class="page__sidebar sidebar">
                         <div class="sidebar__container">
+                            <div class="header__user user-header sidebar__user">
+                                <p class="user-header__name">User</p>
+                                <button class="user-header__btn">
+                                    <img src="{% static 'flashcards/img/user.svg' %}" alt="User icon">
+                                </button>
+                            </div>
                             <h2 class="sidebar__title">
                                 <span>Главная</span>
                             </h2>
@@ -51,7 +57,6 @@
                                 <ul class="nav-sidebar__list">
                                     {% for category in categories %}
                                         <li class="nav-sidebar__item">
-                                            <!-- <img src="{% static 'flashcards/img/chat.svg' %}" alt="Category icon"> -->
                                             <a href="{% url 'by_category' category.pk %}" class="nav-list__link">
                                                 <span>{{category.name}}</span>
                                             </a>
@@ -67,8 +72,18 @@
                             <a href="{% url 'by_category' category.pk %}">{{category.name}}</a>
                         {% endfor %} -->
                     </div>
-                    {% block content %}
-                    {% endblock %}
+                    <div class="page__content content">
+                        <div class="content__header">
+                            <a href="{% url 'add_flashcard' %}" class="content__add">Добавить карточку</a>
+                            <a href="{% url 'add_category' %}" class="content__add">Добавить тему</a>
+                        </div>
+                        <div class="content__body content-body">
+                            <div class="content-body__container">
+                                {% block content %}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
             <footer class="footer">
@@ -78,5 +93,5 @@
             </footer>
         </div>
     </body>
-    <script src="{% static 'flashcards/js/script.js' %}"></script>
+    <script src="{% static 'flashcards/js/script.js' %}?v=129"></script>
 </html>
