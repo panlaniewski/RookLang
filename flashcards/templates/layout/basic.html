@@ -1,28 +1,97 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Главная{% endblock %}: Мои карточки</title>
-        <link rel="stylesheet" href="{% static 'flashcards/style.css' %}">
+        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}?v=133">
     </head>
     <body>
-        <header>
-            <h1>Мои карточки</h1>
-        </header>
-        <nav>
-            <a href="{% url 'index' %}">Главная</a>
-            <a href="{% url 'add_category' %}">Добавить тему</a>
-            <a href="{% url 'add_flashcard' %}">Добавить карточку</a>
-            {% for category in categories %}
-            <a href="{% url 'by_category' category.pk %}">{{category.name}}</a>
-            {% endfor %}
-        </nav>
-        <main>
-            {% block content %}
-            {% endblock %}
-        </main>
+        <div class="wrapper">
+            <header class="header">
+                <div class="header__wrapper">
+                    <div class="header__container">
+                        <div class="header__logo logo-header">
+                            <a href="{% url 'index' %}" class="logo-header__link">RookLang</a>
+                        </div>
+                        <div class="header__search search-header">
+                            <div class="search-header__wrapper">
+                                <img src="{% static 'flashcards/img/search.svg' %}" alt="Search icon">
+                                <input type="text" class="search-header__input" placeholder="поиск по карточкам...">
+                            </div>
+                            <button class="search-header__btn" type="button">
+                                <img src="{% static 'flashcards/img/search.svg' %}" alt="Search icon">
+                            </button>
+                        </div>
+                        <div class="header__user user-header">
+                            <p class="user-header__name">User</p>
+                            <button class="user-header__btn">
+                                <img src="{% static 'flashcards/img/user.svg' %}" alt="User icon">
+                            </button>
+                        </div>
+                        <button class="header__burger burger-header"><span></span></button>
+                    </div>
+                </div>
+            </header>
+            <main class="page">
+                <div class="page__container">
+                    <div class="page__sidebar sidebar">
+                        <div class="sidebar__container">
+                            <div class="header__user user-header sidebar__user">
+                                <p class="user-header__name">User</p>
+                                <button class="user-header__btn">
+                                    <img src="{% static 'flashcards/img/user.svg' %}" alt="User icon">
+                                </button>
+                            </div>
+                            <h2 class="sidebar__title">
+                                <span>Главная</span>
+                            </h2>
+                            <h3 class="sidebar__all link_active">
+                                <a href="{% url 'index' %}">Все карточки</a>
+                            </h3>
+                            <nav class="sidebar__nav nav-sidebar">
+                                <h4 class="nav-sidebar__title">
+                                    <span>Темы</span>
+                                </h4>
+                                <ul class="nav-sidebar__list">
+                                    {% for category in categories %}
+                                        <li class="nav-sidebar__item">
+                                            <a href="{% url 'by_category' category.pk %}" class="nav-list__link">
+                                                <span>{{category.name}}</span>
+                                            </a>
+                                        </li>
+                                    {% endfor %} 
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- <a href="{% url 'index' %}">Главная</a>
+                        <a href="{% url 'add_category' %}">Добавить тему</a>
+                        <a href="{% url 'add_flashcard' %}">Добавить карточку</a>
+                        {% for category in categories %}
+                            <a href="{% url 'by_category' category.pk %}">{{category.name}}</a>
+                        {% endfor %} -->
+                    </div>
+                    <div class="page__content content">
+                        <div class="content__header">
+                            <a href="{% url 'add_flashcard' %}" class="content__add">Добавить карточку</a>
+                            <a href="{% url 'add_category' %}" class="content__add">Добавить тему</a>
+                        </div>
+                        <div class="content__body content-body">
+                            <div class="content-body__container">
+                                {% block content %}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="footer">
+                <div class="footer__container">
+                    <p class="footer__text">Roshcha, 2025. By panlaniewski</p>
+                </div>
+            </footer>
+        </div>
     </body>
+    <script src="{% static 'flashcards/js/script.js' %}?v=129"></script>
 </html>

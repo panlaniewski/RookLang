@@ -1,12 +1,23 @@
 {% extends 'layout/basic.html' %}
+{% load static %}
 
 {% block content %}
 {% for flashcard in flashcards %}
-    <div>
+    <div class="content-body__flashcard flashcard">
+        <h2 class="flashcard__word">{{flashcard.word}}</h2>
+        <h3 class="flashcard__translate">{{flashcard.translate}}</h3>
+        <!-- <p class="flashcard__example">{{flashcard.example}}</p>
+        <p class="flashcard__tip">{{flashcard.tip}}</p> -->
+    </div>
+    <!-- <div>
         <h2>{{flashcard.word}}</h2>
         <h3>{{flashcard.translate}}</h3>
         <p>{{flashcard.example}}</p>
         <p>{{flashcard.tip}}</p>
-    </div>
+    </div> -->
 {% endfor %}   
+<!-- <div class="content-body__flashcard flashcard">
+    <h2 class="flashcard__word">word</h2>
+    <h3 class="flashcard__translate">слово</h3>
+</div> -->
 {% endblock %}
