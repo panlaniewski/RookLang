@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Главная{% endblock %}: Мои карточки</title>
-        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}?v=133">
+        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}">
     </head>
     <body>
         <div class="wrapper">
@@ -74,8 +74,8 @@
                     </div>
                     <div class="page__content content">
                         <div class="content__header">
-                            <a href="{% url 'add_flashcard' %}" class="content__add">Добавить карточку</a>
-                            <a href="{% url 'add_category' %}" class="content__add">Добавить тему</a>
+                            <a href="{% url 'other' page='create_flashcard' %}" class="content__add">Добавить карточку</a>
+                            <a href="{% url 'other' page='create_category' %}" class="content__add">Добавить тему</a>
                         </div>
                         <div class="content__body content-body">
                             <div class="content-body__container">
@@ -93,5 +93,5 @@
             </footer>
         </div>
     </body>
-    <script src="{% static 'flashcards/js/script.js' %}?v=129"></script>
+    <script src="{% static 'flashcards/js/script.js' %}"></script>
 </html>
