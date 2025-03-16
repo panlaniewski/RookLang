@@ -1,0 +1,15 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+
+{% block content %}
+<div class="profile">
+    <div class="profile__container">
+        <p class="profile__user">Добро пожаловать!</p>
+        <p class="profile__user">{{user}}</p>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Выйти</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -5,8 +5,8 @@ from django.contrib.staticfiles.views import serve
 from django.views.decorators.cache import never_cache
 
 urlpatterns = [
-    path('', include('flashcards.urls')),
     path('admin/', admin.site.urls),
+    path('', include('flashcards.urls')),
 ]
 
 if settings.DEBUG:

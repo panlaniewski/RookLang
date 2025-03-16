@@ -1,6 +1,5 @@
 from django.db import models
-# ---------------------------------------------------------
-
+# -----------------------------------------------------------------------------------------
 class Flashcard(models.Model):
     word = models.CharField(max_length = 50, verbose_name = 'Слово')
     translate = models.CharField(max_length = 50, verbose_name = 'Перевод')
@@ -16,8 +15,7 @@ class Flashcard(models.Model):
         verbose_name = 'Слово'
         ordering = ['id']
 
-# ---------------------------------------------------------
-
+# -----------------------------------------------------------------------------------------
 class Category(models.Model):
     name = models.CharField(max_length = 20, db_index = True, verbose_name = "Название")
 
@@ -28,17 +26,4 @@ class Category(models.Model):
         verbose_name_plural = 'Темы'
         verbose_name = 'Тема'
         ordering = ['name']
-
-# ---------------------------------------------------------
-
-class Language(models.Model):
-    name = models.CharField(max_length = 30)
-    alphabet = models.CharField(max_length = 20)
-
-    def __str__(self):
-        return self.name
-
-    class Meta :
-        verbose_name_plural = 'Языки'
-        verbose_name = 'Язык'
-        ordering = ['id']
+# -----------------------------------------------------------------------------------------

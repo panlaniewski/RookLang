@@ -5,6 +5,9 @@ from django.template.loader import get_template
 from django.http import HttpResponse, Http404
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 # ------------------------------------------------------------------------------------------------------------
 from .models import Flashcard, Category
 from .forms import FlashcardForm, CategoryForm
@@ -13,15 +16,16 @@ from .forms import FlashcardForm, CategoryForm
 def index(request):
     flashcards = Flashcard.objects.all()
     categories = Category.objects.all()
+    print(request.user)
     return render(request, 'flashcards/index.html', { 'flashcards' : flashcards, 'categories': categories} )
-
+# ------------------------------------------------------------------------------------------------------------
 def other_page(request, page):
     try:
         template = get_template('flashcards/' + page + '.html')
     except TemplateDoesNotExist:
         raise Http404
     return HttpResponse(template.render(request=request))
-
+# ------------------------------------------------------------------------------------------------------------
 def by_category(request, category_id):
     flashcards = Flashcard.objects.filter(category = category_id)
     categories = Category.objects.all()
@@ -33,6 +37,10 @@ def by_category(request, category_id):
     }
     return render(request, 'flashcards/by_category.html', context)
 # ------------------------------------------------------------------------------------------------------------
+@login_required
+def profile(request):
+    return render(request, 'flashcards/profile.html')
+# ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
 class FlashcardCreateView(CreateView):
     template_name = 'flashcards/create_flashcard.html'
@@ -43,7 +51,7 @@ class FlashcardCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['category'] = Category.objects.all()
         return context
-    
+# ------------------------------------------------------------------------------------------------------------    
 class CategoryCreateView(CreateView):
     template_name = 'flashcards/create_category.html'
     form_class = CategoryForm
@@ -53,7 +61,7 @@ class CategoryCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['category'] = Category.objects.all()
         return context
-
-
-
-    
+# ------------------------------------------------------------------------------------------------------------    
+class FlashcardLoginView(LoginView):
+    template_name = 'flashcards/login.html'
+# ------------------------------------------------------------------------------------------------------------ 

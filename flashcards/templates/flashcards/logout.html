@@ -1,0 +1,18 @@
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Выход{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}">
+    </head>
+    <body>
+        <div class="logout">
+            <div class="logout__wrapper">
+                <div class="logout__text">Вы вышли с сайта</div>
+                <a href="{% url 'index' %}">На главную</a>
+            </div>
+        </div>
+    </body>
+</html>

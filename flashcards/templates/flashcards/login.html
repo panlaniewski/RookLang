@@ -1,0 +1,32 @@
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Регистрация{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}">
+    </head>
+    <body>
+        <div class="login">
+            <div class="login__wrapper">
+                {% if user.is_authenticated %}
+                <div class="login__auth">Вы выполнили вход.</div>
+                {% else %}
+                <form method="post" action="{% url 'login' %}" class="login__form">
+                    {% csrf_token %}
+                    <div class="login__username username-login">
+                        <p class="login__text">User:</p>
+                        <input name="username" type="text" class="username-login__input">
+                    </div>
+                    <div class="login__password password-login">
+                        <p class="login__text">Password:</p>
+                        <input name="password" type="password" class="password-login__input">
+                    </div>
+                    <button type='submit' class="login__submit">Submit</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html>

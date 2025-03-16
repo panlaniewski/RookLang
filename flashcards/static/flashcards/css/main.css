@@ -81,7 +81,6 @@
 .user-header__name{
     font-size: 32px;
     color: var(--white);
-    pointer-events: none;
 }
 .user-header__btn {
     width: 90px;
