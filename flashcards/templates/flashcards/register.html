@@ -1,0 +1,22 @@
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Регистрация{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}">
+    </head>
+    <body>
+        <div class="register">
+            <div class="register__wrapper">
+                <form method="post" action="{% url 'register' %}" class="register__form">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    {{form.errors}}
+                    <button class="register__btn">Зарегестрироваться</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
