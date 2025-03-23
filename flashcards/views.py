@@ -3,14 +3,14 @@ from django.shortcuts import render
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
 from django.http import HttpResponse, Http404
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # ------------------------------------------------------------------------------------------------------------
 from .models import Flashcard, Category
-from .forms import FlashcardForm, CategoryForm
+from .forms import FlashcardForm, CategoryForm, RegisterForm
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
 def index(request):
@@ -65,3 +65,11 @@ class CategoryCreateView(CreateView):
 class FlashcardLoginView(LoginView):
     template_name = 'flashcards/login.html'
 # ------------------------------------------------------------------------------------------------------------ 
+class RegisterView(FormView):
+    form_class = RegisterForm
+    template_name = 'flashcards/register.html'
+    success_url = '/'
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+# ------------------------------------------------------------------------------------------------------------

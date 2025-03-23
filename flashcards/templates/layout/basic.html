@@ -29,6 +29,7 @@
                             <a href="{% url 'profile' %}"  class="user-header__name">{{user}}</a>
                             {% else %}
                             <a href="{% url 'login' %}" class="user-header__name">Войти</a>
+                            <a href="{% url 'register' %}" class="user-header__name">Зарегистрироваться</a>
                             {% endif %}
                             <button class="user-header__btn">
                                 <img src="{% static 'flashcards/img/user.svg' %}" alt="User icon">
@@ -43,7 +44,11 @@
                     <div class="page__sidebar sidebar">
                         <div class="sidebar__container">
                             <div class="header__user user-header sidebar__user">
-                                <p class="user-header__name">User</p>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'profile' %}"  class="user-header__name">{{user}}</a>
+                                {% else %}
+                                <a href="{% url 'login' %}" class="user-header__name">Войти</a>
+                                {% endif %}
                                 <button class="user-header__btn">
                                     <img src="{% static 'flashcards/img/user.svg' %}" alt="User icon">
                                 </button>
@@ -72,8 +77,8 @@
                     </div>
                     <div class="page__content content">
                         <div class="content__header">
-                            <a href="{% url 'other' page='create_flashcard' %}" class="content__add">Добавить карточку</a>
-                            <a href="{% url 'other' page='create_category' %}" class="content__add">Добавить тему</a>
+                            <a href="{% url 'add_flashcard' %}" class="content__add">Добавить карточку</a>
+                            <a href="{% url 'add_category' %}" class="content__add">Добавить тему</a>
                         </div>
                         <div class="content__body content-body">
                             <div class="content-body__container">
