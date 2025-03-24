@@ -5,16 +5,41 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Регистрация{% endblock %}</title>
-        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}?v=100">
     </head>
     <body>
-        <div class="register">
+        <div class="register web__class">
             <div class="register__wrapper">
-                <form method="post" action="{% url 'register' %}" class="register__form">
+                <div class="register__header">
+                    <h1 class="register__title">RookLang</h1>
+                </div>
+                <form method="post" action="{% url 'register' %}" class="register__form form">
                     {% csrf_token %}
-                    {{form.as_p}}
-                    {{form.errors}}
-                    <button class="register__btn">Зарегестрироваться</button>
+                    <div class="register__input">
+                        <p class="form__text">Имя пользователя</p>
+                        <div class="register__username input__class">
+                            {{form.username}}
+                        </div>
+                    </div>
+                    <div class="register__input">
+                        <p class="form__text">Адрес электронной почты</p>
+                        <div class="register__email input__class">
+                            {{form.email}}
+                        </div>
+                    </div>
+                    <div class="register__input">
+                        <p class="form__text">Пароль</p>
+                        <div class="register__password input__class">
+                            {{form.password1}}
+                        </div>
+                    </div>
+                    <div class="register__input"> 
+                        <p class="form__text">Пароль(введите снова)</p>
+                        <div class="register__password input__class">
+                            {{form.password2}}
+                        </div>
+                        </div>
+                    <button class="register__btn">Сохранить</button>
                 </form>
             </div>
         </div>

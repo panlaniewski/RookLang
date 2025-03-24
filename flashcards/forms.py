@@ -13,5 +13,5 @@ class CategoryForm(ModelForm):
         fields = '__all__'
 
 class RegisterForm(UserCreationForm):
-    
-    pass
+    class Meta(UserCreationForm.Meta):
+        fields = UserCreationForm.Meta.fields + ('email',)
