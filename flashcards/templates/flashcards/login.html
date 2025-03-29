@@ -4,28 +4,31 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Вход{% endblock %}</title>
+        <title>{% block title %}Регистрация{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}">
     </head>
     <body>
-        <div class="login">
-            <div class="login__wrapper">
-                {% if user.is_authenticated %}
-                <div class="login__auth">Вы выполнили вход.</div>
-                {% else %}
-                <form method="post" action="{% url 'login' %}" class="login__form">
+        <div class="register web__class">
+            <div class="register__wrapper">
+                <div class="register__header">
+                    <h1 class="register__title">RookLang</h1>
+                </div>
+                <form method="post" action="{% url 'login' %}" class="register__form form">
                     {% csrf_token %}
-                    <div class="login__username username-login">
-                        <p class="login__text">User:</p>
-                        <input name="username" type="text" class="username-login__input">
+                    <div class="form__input input__block">
+                        <p class="input__lable">Имя пользователя</p>
+                        <div class="register__username input__class">
+                            {{form.username}}
+                        </div>
                     </div>
-                    <div class="login__password password-login">
-                        <p class="login__text">Password:</p>
-                        <input name="password" type="password" class="password-login__input">
+                    <div class="form__input input__block">
+                        <p class="input__lable">Пароль</p>
+                        <div class="register__password input__class">
+                            {{form.password}}
+                        </div>
                     </div>
-                    <button type='submit' class="login__submit">Submit</button>
+                    <button class="register__btn">Войти</button>
                 </form>
-                {% endif %}
             </div>
         </div>
     </body>
