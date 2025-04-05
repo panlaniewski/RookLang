@@ -16,3 +16,17 @@ burgerButton.addEventListener('click', function () {
    this.classList.toggle('_burger-active');
    body.classList.toggle('_lock');
 })
+// -----------------------------------------------------------------------------------------------------
+const get_data_url = 'get_data/'
+
+function print_flashcard(data) {
+    console.log(data);
+}
+
+function ajax_get() {
+    return fetch(get_data_url, {
+        method: 'GET',
+    }).then(response => response.json())
+        .then(data => print_flashcard(data))
+        .catch(error => console.error('Ошибка:', error));
+}

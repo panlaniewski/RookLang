@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.views.generic.edit import CreateView, FormView
 from django.urls import reverse_lazy
 from django.contrib.auth import login
@@ -11,14 +11,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # ------------------------------------------------------------------------------------------------------------
 from .models import Flashcard, Category
-from .forms import FlashcardForm, CategoryForm, RegisterForm
+from .forms import FlashcardForm, CategoryForm, RegisterForm, SearchForm
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
-def index(request):
-    flashcards = Flashcard.objects.all()
-    categories = Category.objects.all()
-    print(request.user)
-    return render(request, 'flashcards/index.html', { 'flashcards' : flashcards, 'categories': categories} )
+@login_required
+def by_user_flashcards(request):
+    flashcards = Flashcard.objects.filter(category__user=request.user)
+    categories = Category.objects.filter(user=request.user)
+    return render(request, 'flashcards/index.html',  { 'flashcards' : flashcards, 'categories': categories})
 # ------------------------------------------------------------------------------------------------------------
 def other_page(request, page):
     try:
@@ -29,8 +29,9 @@ def other_page(request, page):
 # ------------------------------------------------------------------------------------------------------------
 def by_category(request, category_id):
     flashcards = Flashcard.objects.filter(category = category_id)
-    categories = Category.objects.all()
+    categories = Category.objects.filter(user=request.user)
     current_category = Category.objects.get(pk = category_id)
+
     context = {
         'flashcards': flashcards,
         'categories': categories,
@@ -41,6 +42,19 @@ def by_category(request, category_id):
 @login_required
 def profile(request):
     return render(request, 'flashcards/profile.html')
+# ------------------------------------------------------------------------------------------------------------
+def ajax_flashcards(request):
+    flashcards = Flashcard.objects.filter(category__user=request.user)
+
+    flashcards_data = []
+    for flashcard in flashcards:
+        flashcards_data.append({
+            'word': flashcard.word,
+            'translate': flashcard.translate,
+            'example': flashcard.example,
+            'tip': flashcard.tip,
+        })
+    return JsonResponse({'flashcards': flashcards_data})
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
 class FlashcardCreateView(CreateView):
@@ -57,6 +71,10 @@ class CategoryCreateView(CreateView):
     template_name = 'flashcards/create_category.html'
     form_class = CategoryForm
     success_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
