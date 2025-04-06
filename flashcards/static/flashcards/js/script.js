@@ -17,16 +17,48 @@ burgerButton.addEventListener('click', function () {
    body.classList.toggle('_lock');
 })
 // -----------------------------------------------------------------------------------------------------
-const get_data_url = 'get_data/'
+const getDataUrl = 'get_data/';
+const flashcardBlocks = document.querySelectorAll('.flashcard');
+const flashcardsContainer = document.querySelector('.flashcards__popup');
+let flashcardsCache = null;
 
-function print_flashcard(data) {
-    console.log(data);
+async function fetchFlashcards() {
+    if (flashcardsCache) {
+        return flashcardsCache;
+    }
+    try {
+        const response = await fetch(getDataUrl);
+        const data = await response.json();
+        flashcardsCache = data.flashcards;
+        return flashcardsCache;
+    } catch (error) {
+        console.error('Ошибка:', error);
+        return null;
+    }
 }
 
-function ajax_get() {
-    return fetch(get_data_url, {
-        method: 'GET',
-    }).then(response => response.json())
-        .then(data => print_flashcard(data))
-        .catch(error => console.error('Ошибка:', error));
+flashcardBlocks.forEach(item => {
+    item.addEventListener('click', async () => {
+        const id = item.id;
+        const flashcards = await fetchFlashcards();
+        if (flashcards) {
+            const flashcardData = flashcards[id - 1];
+            createFlashcard(flashcardData);
+        }
+    });
+});
+
+function createFlashcard(data) {
+    flashcardsContainer.innerHTML = '';
+    
+    const flashcardElement = document.createElement('div');
+    flashcardElement.innerHTML = `
+        <div class="popup__wrapper">
+            <p class="popup__translate">Перевод: ${data.translate}</p>
+        </div>
+    `;
+    flashcardsContainer.appendChild(flashcardElement);
+    flashcardsContainer.style.display = 'flex';
 }
+
+

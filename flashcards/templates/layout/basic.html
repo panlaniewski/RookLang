@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Главная{% endblock %}</title>
-        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}?v=1">
     </head>
     <body>
         <div class="wrapper">
@@ -94,6 +94,9 @@
                     <p class="footer__text">Roshcha, 2025. By panlaniewski</p>
                 </div>
             </footer>
+        </div>
+        <div class="flashcards__popup popup">
+            <button type="button" class="btn__close">X</button>
         </div>
     </body>
     <script src="{% static 'flashcards/js/script.js' %}"></script>

@@ -3,9 +3,9 @@
 
 {% block content %}
 {% for flashcard in flashcards %}
-    <div class="content-body__flashcard flashcard">
+    <div class="content-body__flashcard flashcard" id="{{flashcard.id}}">
         <h2 class="flashcard__word">{{flashcard.word}}</h2>
-        <h3 class="flashcard__translate">{{flashcard.translate}}</h3>
+        <!-- <h3 class="flashcard__translate">{{flashcard.translate}}</h3> -->
         <!-- <p class="flashcard__example">{{flashcard.example}}</p>
         <p class="flashcard__tip">{{flashcard.tip}}</p> -->
     </div>

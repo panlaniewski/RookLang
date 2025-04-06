@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # ------------------------------------------------------------------------------------------------------------
 from .models import Flashcard, Category
-from .forms import FlashcardForm, CategoryForm, RegisterForm, SearchForm
+from .forms import FlashcardForm, CategoryForm, RegisterForm
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
 @login_required
