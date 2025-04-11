@@ -484,9 +484,10 @@
     align-items: center;
     flex-direction: column;
     gap: 10px;
-    background-color: #F5F5F5;
+    background-color: #1C669E;
     min-height: 170px;
     border-radius: 25px;
+    color: #FFFFFF;
 }
 .flashcard {
     flex: 0 1 330px;
@@ -612,32 +613,68 @@
 }
 /*---------------------------------------------------------------------------------------------*/
 .flashcards__popup {
-    position: absolute;
+    position: fixed;
     z-index: 101;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     display: none;
     background-color: #0000008b;
 }
-
 .popup__wrapper{
-    padding: 30px;
+    width: 495px;
+    height: 256.5px;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    position: relative;
+}
+.popup__wrapper.is_flipped {
+    transform: rotateX(180deg);
+}
+.popup__face{
+    position: absolute;
+    width: 100%;
+    height: 100%;
     background-color: #FFFFFF;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    border-radius: 16;
+    box-shadow: 0 3px 18px 3px rgba(0, 0, 0, 0.2);
 }
-.popup__word{
-    font-size: 50px;
+.popup__face--front{
+    
+}
+.popup__face--back{
+    transform: rotateX(180deg);
+}
+.popup__word, .popup__translate {
+    font-size: 55px;
     font-weight: 700;
+    text-align: center;
+    margin: 0;
+    white-space: normal;
+    word-wrap: break-word; 
+    overflow: hidden;
+    max-width: 100%;
+    line-height: 1.2;
 }
-.popup__translate{
-    font-size: 40px;
-    font-weight: 700;
+@media (max-width: 524.98px) {
+    .popup__wrapper{
+        width: 90%;
+    }
+    .popup__word, .popup__translate {
+        font-size: 50px;
+    }
 }
+
