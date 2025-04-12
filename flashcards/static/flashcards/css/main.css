@@ -462,6 +462,14 @@
     width: 61px;
     height: 62px;
 }
+.content__learn{
+    color: var(--grey);
+    /* height: 100%; */
+    padding: 2px 35px;
+}
+.content__learn:before{
+    display: none;
+}
 @media (any-hover: hover) {
     .content__add:hover {
         background-color: #D9D9D9;
@@ -612,7 +620,7 @@
     }
 }
 /*---------------------------------------------------------------------------------------------*/
-.flashcards__popup {
+.popup{
     position: fixed;
     z-index: 101;
     top: 0;
@@ -676,5 +684,14 @@
     .popup__word, .popup__translate {
         font-size: 50px;
     }
+}
+.learn__wrapper{
+    display: none;
+}
+.learn__next{
+    padding: 10px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 30px;
 }
 
