@@ -42,10 +42,11 @@ async function fetchFlashcards() {
 flashcardBlocks.forEach(item => {
     item.addEventListener('click', async (event) => {
         event.stopPropagation();
-        const id = item.id;
+        const id = parseInt(item.id);
         const flashcards = await fetchFlashcards();
         if (flashcards) {
-            const flashcardData = flashcards[id - 1];
+            const flashcardData = flashcards.find(flashcard => flashcard.id === id);
+            console.log(flashcardData);
             createFlashcard(flashcardData);
         }
     });
@@ -75,7 +76,6 @@ let index = 0;
 
 repeatButton.addEventListener('click', async (event) => {
     event.stopPropagation();
-
     shuffled_flashcards = shuffle(await fetchFlashcards());
     index = 0;
 
@@ -122,3 +122,5 @@ window.document.addEventListener('click', event => {
         flashcardsContainer.style.display = 'none';
     }
 })
+
+

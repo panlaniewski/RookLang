@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .utilities import get_timestamp_path
 # -----------------------------------------------------------------------------------------
 class Flashcard(models.Model):
-    category = models.ForeignKey('Category', null = True, on_delete = models.PROTECT, verbose_name = 'Тема')
+    category = models.ForeignKey('Category', null = True, on_delete = models.CASCADE, verbose_name = 'Тема')
     word = models.CharField(max_length = 50, verbose_name = 'Слово')
     translate = models.CharField(max_length = 50, verbose_name = 'Перевод')
     example = models.TextField(null = True, blank = True, verbose_name = 'Пример употребления')
@@ -20,7 +20,7 @@ class Flashcard(models.Model):
 
 # -----------------------------------------------------------------------------------------
 class Category(models.Model):
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length = 20, db_index = True, verbose_name = "Название")
 
     def __str__(self):

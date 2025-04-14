@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------------------------------------
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
 from django.http import HttpResponse, Http404, JsonResponse
@@ -49,12 +49,24 @@ def ajax_flashcards(request):
     flashcards_data = []
     for flashcard in flashcards:
         flashcards_data.append({
+            'id': flashcard.id,
             'word': flashcard.word,
             'translate': flashcard.translate,
             'example': flashcard.example,
             'tip': flashcard.tip,
         })
     return JsonResponse({'flashcards': flashcards_data})
+# ------------------------------------------------------------------------------------------------------------
+def delete_flashcard(request, pk):
+    flashcard = get_object_or_404(Category, pk=pk)
+    category_id = flashcard.category.id  
+    flashcard.delete()
+    return JsonResponse({'status': 'success'})
+
+def delete_category(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    category.delete()  
+    return JsonResponse({'status': 'success'})
 # ------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------
 class FlashcardCreateView(CreateView):

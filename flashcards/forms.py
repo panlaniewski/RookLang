@@ -6,7 +6,13 @@ from .models import Flashcard, Category
 class FlashcardForm(ModelForm):
     class Meta:
         model = Flashcard
-        fields = '__all__'
+        fields = ('category', 'word', 'translate',)
+
+        widgets = {
+            'word': forms.TextInput(attrs={'class': 'form-control'}),
+            'translate': forms.TextInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+        }
 
 class CategoryForm(ModelForm):
     class Meta:
