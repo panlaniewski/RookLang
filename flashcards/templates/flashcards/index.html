@@ -3,21 +3,27 @@
 
 {% block content %}
 {% for flashcard in flashcards %}
-    <div class="content-body__flashcard flashcard">
+    <div class="content-body__flashcard flashcard" id="{{flashcard.id}}">
         <h2 class="flashcard__word">{{flashcard.word}}</h2>
-        <h3 class="flashcard__translate">{{flashcard.translate}}</h3>
+        <!-- <h3 class="flashcard__translate">{{flashcard.translate}}</h3> -->
         <!-- <p class="flashcard__example">{{flashcard.example}}</p>
         <p class="flashcard__tip">{{flashcard.tip}}</p> -->
     </div>
-    <!-- <div>
-        <h2>{{flashcard.word}}</h2>
-        <h3>{{flashcard.translate}}</h3>
-        <p>{{flashcard.example}}</p>
-        <p>{{flashcard.tip}}</p>
-    </div> -->
 {% endfor %}   
 <!-- <div class="content-body__flashcard flashcard">
     <h2 class="flashcard__word">word</h2>
     <h3 class="flashcard__translate">слово</h3>
 </div> -->
+<div class="flashcards__popup popup">
+    <div class="popup__wrapper">
+        <div class="popup__face popup__face--front">
+            <div class="popup__tip"></div>
+            <p class="popup__word popup__text" data-flashcard="word"></p>
+            <div class="popup__example"></div>
+        </div>
+        <div class="popup__face popup__face--back">
+            <p class="popup__translate popup__text" data-flashcard="translate"></p>
+        </div>
+    </div>
+</div>
 {% endblock %}

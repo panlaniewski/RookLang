@@ -1,0 +1,51 @@
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Регистрация{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'flashcards/css/main.css' %}">
+    </head>
+    <body>
+        <div class="register web__class">
+            <div class="register__wrapper">
+                <div class="register__header">
+                    <h1 class="register__title">RookLang</h1>
+                </div>
+                <form method="post" action="{% url 'register' %}" class="register__form form">
+                    {% csrf_token %}
+                    <div class="form__input input__block">
+                        <p class="input__lable">Имя пользователя</p>
+                        <div class="register__username input__class">
+                            {{form.username}}
+                        </div>
+                    </div>
+                    <div class="form__input input__block">
+                        <p class="input__lable">Электронная почта</p>
+                        <div class="register__email input__class">
+                            {{form.email}}
+                        </div>
+                    </div>
+                    <div class="form__input input__block">
+                        <p class="input__lable">Пароль</p>
+                        <div class="register__password input__class">
+                            {{form.password1}}
+                        </div>
+                    </div>
+                    <div class="form__input input__block">
+                        <p class="input__lable">Пароль (введите снова)</p>
+                        <div class="register__password input__class">
+                            {{form.password2}}
+                        </div>
+                    </div>
+                    <button class="register__btn">Создать аккаунт</button>
+                </form>
+                <div class="register__bottom">
+                    Уже есть аккаунт? 
+                    <a href="{% url 'login' %}">Войти</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
